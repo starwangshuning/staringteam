@@ -4,7 +4,7 @@
     <title>Staring</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="public/assets/third/seedsui/plugin/seedsui/seedsui.min.css">
+    <link rel="stylesheet" href="public/assets/third/seedsui/plugin/seedsui/seedsui.min-bak.css">
     <style>
         html, body {
             height: 100%;
@@ -50,20 +50,10 @@
             border-color: #4d90fe;
         }
 
-        .alert-div{
-            width: 80%;
-            background-color: #fff;
-            height: 200px;
-            position: absolute;
-            bottom: 5px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            margin-left: 10%;
-            position: fixed;
-            z-index: 10;
-        }
     </style>
 </head>
 <body>
+
     <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
 
     <input id="destination-input" class="controls" style="top: 45px;" type="text" placeholder="Enter a destination location">
@@ -72,16 +62,29 @@
 
     <div>
         <section data-role="section" class="active">
-            <div id="mshare" class="hide sharebox">
-                <ul class="grid size54" data-rowspace="8" data-col="3">
-                    <li>
-                        <a class="photo color-white" style="background-color:#e55f5f;" data-share="tsina">
-                            <i class="icon icon-tsina"></i>
-                        </a>
-                        <label class="grid-label">新浪微博</label>
-                    </li>
-                </ul>
-                <a class="button cancel block" style="margin: 8px 20px;" id="msharecancel">取消</a>
+            <div id="formBox" class="hide " style="padding: 0;background-color:#fff;height: 200px;">
+                <div style="height: 50px;line-height: 50px;background-color: #F7F7F7;">
+                    <span style="float: left;color: #36acf4;margin-left: 10px;">取消</span>
+                    <span style="float: right;color: #36acf4;margin-right: 10px;">完成</span>
+                </div>
+                <div style="height: 50px;">
+
+                    <div style="width: 50%;float: left;">
+                        <span>预计</span>
+                        <span>1324</span>
+                    </div>
+
+                    <div style="width: 50%;float: left;">
+                        <span>人数</span>
+                        <input type="number" >
+                    </div>
+
+                </div>
+                <div class="input-box nopadding margin8 ricon">
+                    <input type="datetime-local" value="2015-06-01T10:55:33"/>
+                    <i class="icon icon-calendar"></i>
+                </div>
+
             </div>
         </section>
     </div>
@@ -90,6 +93,9 @@
 
 
     function initMap() {
+        showForm();
+
+
         var origin_place_id = null;
         var destination_place_id = null;
         var travel_mode = google.maps.TravelMode.DRIVING;
@@ -103,8 +109,10 @@
         var geocoder = new google.maps.Geocoder;
         var service = new google.maps.DistanceMatrixService;
 
-        var origin = 'Toronto, New South Wales, Australia';
-        var destination = 'Toronto Private Hospital, Cary Street, Toronto, New South Wales, Australia';
+        var origin = '';
+        var destination = '';
+        var distanceValue = 0;
+        var durationValue = 0;
 
         directionsDisplay.setMap(map);
 
@@ -150,10 +158,14 @@
             origin_place_id = place.place_id;
             route(origin_place_id, destination_place_id, travel_mode,
                     directionsService, directionsDisplay);
+
+            if(destination != '' && origin!=''){
+                showForm();
+            }
         });
 
         destination_autocomplete.addListener('place_changed', function () {
-            showShare();
+
             var place = destination_autocomplete.getPlace();
             destination = place.formatted_address;
             if (!place.geometry) {
@@ -171,6 +183,10 @@
             //get detail infos
             detailsRoutes(origin, destination, service);
 
+
+            if(destination != '' && origin!=''){
+                showForm();
+            }
 
         });
 
@@ -205,13 +221,14 @@
                 if (status !== google.maps.DistanceMatrixStatus.OK) {
                     alert('Error was: ' + status);
                 } else {
-                    var originList = response.originAddresses;
-                    var destinationList = response.destinationAddresses;
+
                     var results = response.rows[0].elements;
-                    var html = originList[0] + ' to ' + destinationList[0] +
-                            ': ' + results[0].distance.text + ' in ' +
-                            results[0].duration.text + '<br>';
-                    console.log(html);
+                    //距离m
+                    distanceValue = results[0].distance.value;
+                    //时间s
+                    durationValue = results[0].duration.value;
+
+                    console.log(results[0]);
                 }
             });
         }
@@ -250,12 +267,12 @@
 
     <script>
         //弹出框
-        var sharepop;
-        var sharepop=new Dialog("#mshare",{
+        var formPop;
+        var formPop=new Dialog("#formBox",{
             pos:"bottom"
         });
-        function showShare(){
-            sharepop.show();
+        function showForm(){
+            formPop.show();
         }
     </script>
 </body>
