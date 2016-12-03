@@ -30,7 +30,7 @@ class Index extends Base {
      */
     public function setting(){
     	return $this->fetch('settingIndex');
-        
+
     }
 
 
