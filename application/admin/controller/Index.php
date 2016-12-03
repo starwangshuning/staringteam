@@ -34,6 +34,10 @@ class Index extends Base {
 
     }
 
+    public function test(){
+        return $this->fetch('test');
+    }
+
 
 
 }
