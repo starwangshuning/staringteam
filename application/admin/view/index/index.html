@@ -1,0 +1,113 @@
+{include file="common/header" /} 
+	<style type="text/css">
+    .photo.bordered{
+		color:#666;
+		background-color:white;
+	}
+	/*metro风格*/
+	.app-metro{
+		padding:2px;
+	}
+	.app-metro:after {
+	    display:table;
+	    content:'';
+	    clear:both;
+	    zoom:1;
+	}
+	.app-metro .sticker{
+		top:2px;
+		left:2px;
+	}
+	.app-metro-tip{
+		position:absolute;
+		right:10px;
+		bottom:4px;
+		height: 32px;
+	    line-height: 32px;
+	    width: 32px;
+		font-size:18px;
+		text-align: right;
+		background-color:transparent;
+	}
+	.app-metro-cell{
+		position:relative;
+		float:left;
+	    box-sizing:border-box;
+	    padding:2px;
+	}
+	.app-metro-cell-inner{
+		width: 100%;
+    	text-align: center;
+		padding:8px 0;
+		box-sizing:border-box;
+	}
+    </style>
+	<header>
+	    <div class="titlebar">
+	        <!-- <a class="titlebar-button" href="javascript:back()"><i class="icon icon-arrowleft"></i></a> -->
+	        <h1>当前管理员：XXXXXX</h1>
+	    </div>
+	</header>
+		<article>
+			<div class="app-metro" style="height:212px;">
+				<div class="app-metro-cell" style="width:60%;">
+					<div class="app-metro-cell-inner box box-middlecenter box-vertical bg-4" style="height:208px;">
+						<p style="font-size: 50px;">10</p>
+						<p style="opacity: 0.7;">未处理订单</p>
+						<p style="position: absolute;right:10px;bottom:10px;text-align: right;">XXXX，欢迎您</p>
+					</div>
+				</div>
+				<div class="app-metro-cell" style="width:40%;padding:0;height:212px;">
+					<div class="app-metro-cell" style="width:100%;">
+						<a class="app-metro-cell-inner bg-3" style="height:118px;">
+							<i class="icon icon-contact-fill size40"></i>
+							<p class="nowrap" style="margin-top:10px;">未完成订单</p>
+						</a>
+					</div>
+					<div class="app-metro-cell" style="width:100%">
+						<a class="app-metro-cell-inner bg-3" style="height:86px;">
+							<i class="icon icon-write-fill size40"></i>
+							<p class="nowrap" style="margin-top:10px;">已完成订单</p>
+						</a>
+					</div>
+				</div>
+				<div class="app-metro-cell" style="width:60%;">
+					<a class="app-metro-cell-inner bg-6">
+						<i class="icon icon-position-fill size40"></i>
+						<p style="margin-top:10px;">司机列表</p>
+					</a>
+				</div>
+				<div class="app-metro-cell" style="width:40%;">
+					<a class="app-metro-cell-inner bg-6">
+						<i class="icon icon-gear-fill size40"></i>
+						<p style="margin-top:10px;">添加司机</p>
+					</a>
+				</div>
+						<div class="app-metro-cell" style="width:40%;">
+					<a class="app-metro-cell-inner bg-8">
+						<i class="icon icon-position-fill size40"></i>
+						<p style="margin-top:10px;">管理员列表</p>
+					</a>
+				</div>
+				<div class="app-metro-cell" style="width:60%;">
+					<a class="app-metro-cell-inner bg-8">
+						<i class="icon icon-gear-fill size40"></i>
+						<p style="margin-top:10px;">添加管理员</p>
+					</a>
+				</div>
+				<div class="app-metro-cell" style="width:100%;">
+					<a class="app-metro-cell-inner bg-7">
+						<i class="icon icon-gear-fill size40"></i>
+						<p style="margin-top:10px;">设置</p>
+					</a>
+				</div>
+			</div>
+		</article>
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+	<script>
+		//定义exmobi返回
+		function back(){history.go(-1);}
+	</script>
+
+{include file="common/footer" /} 
