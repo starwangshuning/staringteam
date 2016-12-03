@@ -8,6 +8,7 @@ class Index extends Base {
 	 * 九宫格中转页
 	 */
     public function index(){
+        
         return $this->fetch('index');
     }
 
