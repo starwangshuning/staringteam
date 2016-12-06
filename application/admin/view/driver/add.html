@@ -1,0 +1,112 @@
+{include file="common/header" /}
+    <!--<header>-->
+        <!--<div class="titlebar">-->
+            <!--<a class="titlebar-button" href="javascript:back()"><i class="size16 icon icon-arrowleft"></i></a>-->
+            <!--<h1>列表</h1>-->
+        <!--</div>-->
+    <!--</header>-->
+    <article>
+        <div class="group" style="margin-top: 0;">
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">姓名</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="填写司机姓名" name="nickname" style="padding:15px 12px;"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">性别</label>
+                <div class="inputbox-right inputbox">
+                    <div class="input-text" style="padding:15px 12px;">
+                        <label>
+                            <input type="radio" class="input-radio"  value="male" name="sex" checked/>
+                            <span>男</span>
+                        </label>
+                        <label style="margin-left:8px;">
+                            <input type="radio" class="input-radio"  value="female" name="sex"/>
+                            <span>女</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">手机</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="填写司机联系方式" name="nickname" style="padding:15px 12px;"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">车牌号</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="填写司机车牌号码" name="nickname" style="padding:15px 12px;"/>
+                </div>
+            </div>
+            <div class="inputbox underline">
+                <label class="inputbox-left" style="padding: 10px 0 10px 12px;">车型</label>
+                <div class="inputbox-right inputbox">
+                    <input type="text" class="input-text" placeholder="填写司机车型" name="nickname" style="padding:15px 12px;"/>
+                </div>
+            </div>
+            <div style="padding:10px 12px;">
+                <a class="button block radius4">添加</a>
+            </div>
+        </div>
+
+
+
+
+
+    </article>
+
+    <!--Exmobi能力-->
+    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
+    <script>
+        var view={
+            /*=========================
+             Model
+             ===========================*/
+            initialize:function(){
+                /*DOM*/
+
+                /*Plugin*/
+
+                /*Data*/
+
+                /*Render*/
+                this.render();
+
+                /*Events*/
+                this._attach();
+            },
+            render:function(){
+                this._initPlugin();
+            },
+            /*=========================
+             Method
+             ===========================*/
+            _update:function(){
+            },
+            /*=========================
+             Plugin
+             ===========================*/
+            _initPlugin:function(){
+
+            },
+            /*=========================
+             Events
+             ===========================*/
+            _attach:function(e){
+                var self=this;
+            },
+            /*=========================
+             Event Handler
+             ===========================*/
+        }
+
+        window.addEventListener("load",function(){
+            view.initialize();
+        }, false);
+
+        //定义exmobi返回
+        function back(){history.go(-1);}
+    </script>
+{include file="common/footer" /}
