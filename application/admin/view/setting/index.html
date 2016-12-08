@@ -8,319 +8,99 @@
     <article>
         <details open>
             <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>时段折扣情况</span>
+                <span>时段折扣情况(单位：$/km)</span>
                 <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
             </summary>
             <div class="group" style="margin:0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">24:00 ~ 07:00</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段每公里加价" name="nickname" style="padding:15px 12px;"/>
+                <form class="period_form">
+                    {foreach name="periodData" item="pItem"}
+                        <div class="inputbox underline">
+                            <label class="inputbox-left" style="padding: 10px 0 10px 12px;">{$pItem.start_period}~{$pItem.end_period}</label>
+                            <div class="inputbox-right inputbox">
+                                <input type="text" class="input-text" placeholder="输入该时段每公里加价" name="period-{$pItem.id}-price_special" value="{$pItem.price_special}"
+                                       style="padding:15px 12px;"/>
+                            </div>
+                        </div>
+                    {/foreach}
+                    <div style="padding:10px 12px;">
+                        <a class="radius4 button block cancel margin8 period_button">立即生效</a>
                     </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">07:00 ~ 17:00</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段每公里加价" name="nickname" style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">17:00 ~ 20:00</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段每公里加价" name="nickname" style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">20:00 ~ 24:00</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段每公里加价" name="nickname" style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
+                </form>
             </div>
         </details>
+        {foreach name="mileageData" item="mItem"}
         <details close>
             <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
+                <span>里程: {$mItem.start_mileage}km ~ {$mItem.end_mileage}km（单位：$）</span>
                 <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
             </summary>
             <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
+                <form class="mileage_form">
+                    <input type="hidden" name="id" value="{$mItem.id}">
+                    <div class="inputbox underline">
+                        <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
+                        <div class="inputbox-right inputbox">
+                            <input type="text" class="input-text" placeholder="输入该时段折扣" name="price_unit" value="{$mItem.price_unit}"
+                                   style="padding:15px 12px;"/>
+                        </div>
                     </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
+                    <div class="inputbox underline">
+                        <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
+                        <div class="inputbox-right inputbox">
+                            <input type="text" class="input-text" placeholder="输入价格区间减少值" name="price_minus" value="{$mItem.price_minus}"
+                                   style="padding:15px 12px;"/>
+                        </div>
                     </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
+                    <div class="inputbox underline">
+                        <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
+                        <div class="inputbox-right inputbox">
+                            <input type="text" class="input-text" placeholder="输入价格区间增加值" name="price_add" value="{$mItem.price_add}"
+                                   style="padding:15px 12px;"/>
+                        </div>
                     </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
+                    <div style="padding:10px 12px;">
+                        <a class="radius4 button block cancel margin8 mileage_button">立即生效</a>
+                    </div>
+                </form>
             </div>
         </details>
-        <details close>
-            <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
-                <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
-            </summary>
-            <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
-            </div>
-        </details>
-        <details close>
-            <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
-                <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
-            </summary>
-            <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
-            </div>
-        </details>
-        <details close>
-            <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
-                <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
-            </summary>
-            <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
-            </div>
-        </details>
-        <details close>
-            <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
-                <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
-            </summary>
-            <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
-            </div>
-        </details>
-        <details close>
-            <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
-                <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
-            </summary>
-            <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
-            </div>
-        </details>
-        <details close>
-            <summary class="underline" style="padding: 12px 12px;position: relative;">
-                <span>里程: 0km ~ 10km</span>
-                <i class="size16 summary-icon float-right" style="margin-top: 2px;"></i>
-            </summary>
-            <div class="group" style="margin: 0;">
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">里程单价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入该时段折扣" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格减价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间减少值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div class="inputbox underline">
-                    <label class="inputbox-left" style="padding: 10px 0 10px 12px;">价格加价</label>
-                    <div class="inputbox-right inputbox">
-                        <input type="text" class="input-text" placeholder="输入价格区间增加值" name="nickname"
-                               style="padding:15px 12px;"/>
-                    </div>
-                </div>
-                <div style="padding:10px 12px;">
-                    <a class="radius4 button block cancel margin8">立即生效</a>
-                </div>
-            </div>
-        </details>
-
-
-
-
-
+        {/foreach}
     </article>
-    <!--Exmobi能力-->
-    <!--<script src="../scripts/lib/exmobi/exmobi.js"></script>-->
-    <script>
-        var view={
-            /*=========================
-             Model
-             ===========================*/
-            initialize:function(){
-                /*DOM*/
 
-                /*Plugin*/
+<script>
+    $(document).ready(function(){
+        $('.period_button').click(function () {
+            var data = $(this).parents('.period_form').serialize();
+            $.post(
+                    '/admin/setting/updatePeriod',
+                    data,
+                    function (result) {
+                        if (result.status) {
+                            alert(result.message)
+                        }
+                    }
+            );
+        });
 
-                /*Data*/
 
-                /*Render*/
-                this.render();
+        $('.mileage_button').click(function () {
+            var data = $(this).parents('.mileage_form').serialize();
+            $.post(
+                    '/admin/setting/updateMileage',
+                    data,
+                    function (result) {
+                        if (result.status) {
+                            alert(result.message)
+                        }
+                    }
+            );
+        });
 
-                /*Events*/
-                this._attach();
-            },
-            render:function(){
-                this._initPlugin();
-            },
-            /*=========================
-             Method
-             ===========================*/
-            _update:function(){
-            },
-            /*=========================
-             Plugin
-             ===========================*/
-            _initPlugin:function(){
 
-            },
-            /*=========================
-             Events
-             ===========================*/
-            _attach:function(e){
-                var self=this;
-            },
-            /*=========================
-             Event Handler
-             ===========================*/
-        }
 
-        window.addEventListener("load",function(){
-            view.initialize();
-        }, false);
+    })
+</script>
 
-        //定义exmobi返回
-        function back(){history.go(-1);}
-    </script>
+
+
 {include file="common/footer" /}
